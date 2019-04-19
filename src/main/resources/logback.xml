@@ -1,0 +1,35 @@
+<configuration>
+
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${COMPONENT_LOGDIR}</file>
+    </appender>
+
+    <!--<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">-->
+        <!--<layout class="ch.qos.logback.classic.PatternLayout">-->
+            <!--<Pattern>[%d] [%-5p] [%-15t] [%logger{36}]</Pattern>-->
+        <!--</layout>-->
+    <!--</appender>-->
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+
+    <!--<springProfile name="!local">-->
+        <!--<root level="INFO">-->
+            <!--<appender-ref ref="FILE">-->
+            <!--</appender-ref>-->
+        <!--</root>-->
+    <!--</springProfile>-->
+    <springProfile name="local">
+        <root level="INFO">
+            <appender-ref ref="STDOUT">
+            </appender-ref>
+        </root>
+    </springProfile>
+
+
+</configuration>
